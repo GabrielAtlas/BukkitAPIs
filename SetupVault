@@ -1,4 +1,4 @@
-     private static Economy econ = null;
+     public static Economy econ = null;
 
  private boolean setupEconomy() {
         if (getServer().getPluginManager().getPlugin("Vault") == null) {
