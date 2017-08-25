@@ -1,28 +1,18 @@
 import org.bukkit.entity.*;
-import org.bukkit.craftbukkit.v1_8_R3.entity.*;
-import net.minecraft.server.v1_8_R3.*;
 import org.bukkit.*;
 import java.lang.reflect.*;
 
 public class TitleAPI
 {
-    public void MessagemClick(final Player player, final Player p, final String Comando, final String Messagem, final String Botao) {
-        final IChatBaseComponent comp = IChatBaseComponent.ChatSerializer.a("{\"text\":\"" + Messagem + "\",\"extra\":[{\"text\":\"" + Botao + "\",\"hoverEvent\":{\"action\":\"show_text\",\"value\":\"§aClique aqui para aceitar tpa\"},\"clickEvent\":{\"action\":\"run_command\",\"value\":\"" + Comando + "\"}}]}");
-        final PacketPlayOutChat packet = new PacketPlayOutChat(comp);
-        ((CraftPlayer)player).getHandle().playerConnection.sendPacket((Packet)packet);
-    }
-    
-    @Deprecated
+       
     public static void setTible(final Player player, final Integer fadeIn, final Integer stay, final Integer fadeOut, final String title, final String subtitle) {
         sendTitle(player, fadeIn, stay, fadeOut, title, subtitle);
     }
     
-    @Deprecated
     public static void sendSubtitle(final Player player, final Integer fadeIn, final Integer stay, final Integer fadeOut, final String message) {
         sendTitle(player, fadeIn, stay, fadeOut, null, message);
     }
     
-    @Deprecated
     public static void sendFullTitle(final Player player, final Integer fadeIn, final Integer stay, final Integer fadeOut, final String title, final String subtitle) {
         sendTitle(player, fadeIn, stay, fadeOut, title, subtitle);
     }
