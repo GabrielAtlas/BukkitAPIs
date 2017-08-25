@@ -2,7 +2,7 @@ import org.bukkit.entity.*;
 import org.bukkit.*;
 import java.lang.reflect.*;
 
-public class TitleAPI
+public class SendTitle
 {
        
     public static void setTible(final Player player, final Integer fadeIn, final Integer stay, final Integer fadeOut, final String title, final String subtitle) {
