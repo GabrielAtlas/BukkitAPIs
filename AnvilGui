@@ -51,6 +51,7 @@ public class AnvilGUI {
 
                     if (event.getInventory().equals(inv)) {
                         event.setCancelled(true);
+                        if (event.getSlotType().equals(SlotType.OUTSIDE)){return;}
 
                         ItemStack item = event.getCurrentItem();
                         int slot = event.getRawSlot();
