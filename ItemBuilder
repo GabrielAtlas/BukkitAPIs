@@ -86,8 +86,10 @@ public class ItemBuilder {
    }
    
     public ItemBuilder addItemFlag(ItemFlag flag){
-     is.getItemMeta().addItemFlags(flag);
-     return this;
+    	ItemMeta im = is.getItemMeta();
+    	im.addItemFlags(flag);
+    	is.setItemMeta(im);
+        return this;
    }
    
    public ItemBuilder setLore(String... lore){
