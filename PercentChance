@@ -1,0 +1,7 @@
+ public static boolean percentChance(double percent){
+	        if(percent > 100 || percent < 0){
+	            throw new IllegalArgumentException("Percentage cannot be greater than 100 or less than 0!");
+	        }
+	        double result = new Random().nextDouble() * 100;
+	        return result <= percent;
+	    }
