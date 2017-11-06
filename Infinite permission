@@ -1,0 +1,10 @@
+public int getPermission(Player player, String permission,int min, int max) {
+		if (player.isOp()) return max;
+		int toReturn = min;
+		for (int i = min; i < max; i++) {
+			if (player.hasPermission(permission+i)) {
+				toReturn = i;
+			}
+		}
+		return toReturn;
+	}
