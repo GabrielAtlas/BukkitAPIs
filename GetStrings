@@ -1,0 +1,12 @@
+public static String getStrings(String[] argumentos, int inicio)
+{
+StringBuilder sb = new StringBuilder();
+for (int i = inicio; i < argumentos.length; i++)
+{
+if (i != inicio) {
+sb.append(" ");
+}
+sb.append(argumentos[i]);
+}
+return sb.toString();
+}
