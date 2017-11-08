@@ -41,6 +41,11 @@ public class ItemBuilder {
      is.setDurability(durabilidade);
      return this;
    }
+   
+    public ItemBuilder setDurability(int durabilidade){
+     is.setDurability(Integer.valueOf(durabilidade));
+     return this;
+   }
 
    public ItemBuilder setName(String nome){
      ItemMeta im = is.getItemMeta();
