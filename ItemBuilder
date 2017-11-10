@@ -43,7 +43,7 @@ public class ItemBuilder {
    }
    
     public ItemBuilder setDurability(int durabilidade){
-     is.setDurability(Short.valueOf(durabilidade));
+     is.setDurability(Short.valueOf(""+durabilidade));
      return this;
    }
 
