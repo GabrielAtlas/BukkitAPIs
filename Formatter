@@ -1,0 +1,4 @@
+private final DecimalFormatSymbols DFS = new DecimalFormatSymbols(new Locale("pt", "BR"));
+private DecimalFormat FORMATTER = new DecimalFormat("###,###,###", DFS);
+
+// FORMATTER.format(10000000000000); 
