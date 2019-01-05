@@ -1,0 +1,112 @@
+// experimental, nunca testei, achei por ai
+
+import org.bukkit.scoreboard.Team;
+import org.bukkit.scoreboard.Score;
+import org.bukkit.entity.Player;
+import org.bukkit.ChatColor;
+import org.bukkit.scoreboard.DisplaySlot;
+import org.bukkit.Bukkit;
+import org.bukkit.scheduler.BukkitTask;
+import org.bukkit.scoreboard.Objective;
+import org.bukkit.scoreboard.Scoreboard;
+import java.util.UUID;
+
+public class ScoreboardAPI
+{
+    private UUID player;
+    private Scoreboard scoreboard;
+    private Objective objective;
+    private BukkitTask task;
+    
+    public ScoreboardAPI(final UUID player, final String title) {
+        this.player = player;
+        this.scoreboard = Bukkit.getScoreboardManager().getNewScoreboard();
+        (this.objective = this.scoreboard.registerNewObjective("objective", "dummy")).setDisplaySlot(DisplaySlot.SIDEBAR);
+        this.setTitle(title);
+        this.registerTeams();
+    }
+    
+    public void registerTeams() {
+        for (int i = 0; i < 15; ++i) {
+            this.scoreboard.registerNewTeam(ChatColor.getByChar(Integer.toHexString(i)).toString());
+        }
+    }
+    
+    public Scoreboard getScoreboard() {
+        return this.scoreboard;
+    }
+    
+    public Player getPlayer() {
+        return Bukkit.getPlayer(this.player);
+    }
+    
+    public void toggleScoreboard() {
+        this.scoreboard.clearSlot(DisplaySlot.SIDEBAR);
+    }
+    
+    public void unregisterTeam(final String s) {
+        if (this.scoreboard.getTeam(s) == null) {
+            return;
+        }
+        this.scoreboard.getTeam(s).unregister();
+    }
+    
+    public void unregisterObjective(final String s) {
+        if (this.scoreboard.getObjective(s) == null) {
+            return;
+        }
+        this.scoreboard.getObjective(s).unregister();
+    }
+    
+    public void setLine(final String s, final int n) {
+        if (s.length() > 16) {
+            this.setLine(s.substring(0, 16), s.substring(16), n, true);
+        }
+        else {
+            this.setLine(s, "", n, false);
+        }
+    }
+    
+    public void setLine(String substring, String suffix, final int score, final boolean b) {
+        if (substring.length() > 16) {
+            substring = substring.substring(0, 16);
+        }
+        if (suffix.length() > 16) {
+            suffix = suffix.substring(0, 16);
+        }
+        if (score < 0 || score > 14) {
+            throw new IllegalArgumentException("You can only get a line from 0 - 14");
+        }
+        final String string = ChatColor.getByChar(Integer.toHexString(score)).toString();
+        final Score score2 = this.objective.getScore(String.valueOf(string) + ChatColor.RESET);
+        final Team team = this.scoreboard.getTeam(string);
+        if (!score2.isScoreSet()) {
+            score2.setScore(score);
+            team.addEntry(score2.getEntry());
+        }
+        team.setPrefix(substring);
+        if (b) {
+            suffix = String.valueOf(ChatColor.getLastColors(substring)) + suffix;
+            if (suffix.length() > 16) {
+                suffix = suffix.substring(0, 16);
+            }
+        }
+        team.setSuffix(suffix);
+    }
+    
+    public void setTitle(String displayName) {
+        displayName = ChatColor.translateAlternateColorCodes('&', displayName);
+        if (displayName.length() > 32) {
+            displayName = displayName.substring(0, 32);
+        }
+        this.objective.setDisplayName(displayName);
+    }
+    
+    public BukkitTask getTask() {
+        return this.task;
+    }
+    
+    public void setTask(final BukkitTask task) {
+        this.task = task;
+    }
+}
