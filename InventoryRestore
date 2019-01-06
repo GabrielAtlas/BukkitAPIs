@@ -1,0 +1,103 @@
+// protected static HashMap<Player, InventoryRestore> invs = new HashMap<>();
+// invs.put(e.getPlayer(), new InventoryRestore(e.getPlayer());
+// invs.get(e.getPlayer()).restore();
+
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.entity.Player;
+
+public class InventoryRestore
+{
+    private Player player;
+    private ItemStack[] inventoryContents;
+    private ItemStack helmet;
+    private ItemStack chestplate;
+    private ItemStack leggings;
+    private ItemStack boots;
+    private int totalExp;
+    private float exp;
+    
+    public InventoryRestore(final Player player) {
+        this.player = player;
+        this.inventoryContents = player.getInventory().getContents();
+        this.helmet = player.getInventory().getHelmet();
+        this.chestplate = player.getInventory().getChestplate();
+        this.leggings = player.getInventory().getLeggings();
+        this.boots = player.getInventory().getBoots();
+        this.totalExp = player.getTotalExperience();
+        this.exp = player.getExp();
+    }
+    
+    public void restore() {
+        this.getPlayer().getInventory().setContents(this.inventoryContents);
+        this.getPlayer().getInventory().setHelmet(this.helmet);
+        this.getPlayer().getInventory().setChestplate(this.chestplate);
+        this.getPlayer().getInventory().setLeggings(this.leggings);
+        this.getPlayer().getInventory().setBoots(this.boots);
+        this.getPlayer().setTotalExperience(this.totalExp);
+        this.getPlayer().setExp(this.exp);
+    }
+    
+    public Player getPlayer() {
+        return this.player;
+    }
+    
+    public void setPlayer(final Player player) {
+        this.player = player;
+    }
+    
+    public ItemStack[] getInventoryContents() {
+        return this.inventoryContents;
+    }
+    
+    public void setInventoryContents(final ItemStack[] inventoryContents) {
+        this.inventoryContents = inventoryContents;
+    }
+    
+    public ItemStack getHelmet() {
+        return this.helmet;
+    }
+    
+    public void setHelmet(final ItemStack helmet) {
+        this.helmet = helmet;
+    }
+    
+    public ItemStack getChestplate() {
+        return this.chestplate;
+    }
+    
+    public void setChestplate(final ItemStack chestplate) {
+        this.chestplate = chestplate;
+    }
+    
+    public ItemStack getLeggings() {
+        return this.leggings;
+    }
+    
+    public void setLeggings(final ItemStack leggings) {
+        this.leggings = leggings;
+    }
+    
+    public ItemStack getBoots() {
+        return this.boots;
+    }
+    
+    public void setBoots(final ItemStack boots) {
+        this.boots = boots;
+    }
+    
+    public int getTotalExp() {
+        return this.totalExp;
+    }
+    
+    public void setTotalExp(final int totalExp) {
+        this.totalExp = totalExp;
+    }
+    
+    public float getExp() {
+        return this.exp;
+    }
+    
+    public void setExp(final float exp) {
+        this.exp = exp;
+    }
+}
