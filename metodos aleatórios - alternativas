@@ -80,3 +80,23 @@ public static boolean isValidTeleport(Location l, Player p) {
   //
   
   //
+ 	  public Block getBlockInFront(LivingEntity ent) {
+		  Location loc = ent.getLocation();
+		  switch ((int)(loc.getYaw() * 4.0f / 360.0f + 0.5)) {
+	            case 0: {
+	                return loc.add(0.0, 0.0, 1.0).getBlock();
+	            }
+	            case 1: {
+	                return loc.add(-1.0, 0.0, 0.0).getBlock();
+	            }
+	            case 2: {
+	                return loc.add(0.0, 0.0, -1.0).getBlock();
+	            }
+	            case 3: {
+	                return loc.add(1.0, 0.0, 0.0).getBlock();
+	            }
+	            default: {
+	                return null;
+	            }
+	        }
+	    }
